@@ -1,0 +1,155 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  animation="fadeInRightBig"
+  duration={500}
+  style={
+    Object {
+      "alignItems": "stretch",
+      "backgroundColor": "transparent",
+      "flex": 1,
+      "justifyContent": "center",
+      "padding": 30,
+      "paddingBottom": 110,
+      "paddingTop": 110,
+      "width": null,
+    }
+  }
+>
+  <Image
+    source={1}
+    style={
+      Object {
+        "flex": 1,
+        "marginBottom": 40,
+        "resizeMode": "contain",
+        "width": null,
+      }
+    }
+  />
+  <View
+    animation="pulse"
+    delay={500}
+    style={
+      Object {
+        "alignItems": "center",
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      disabled={false}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+            "color": "white",
+            "fontSize": 18,
+            "fontWeight": "bold",
+            "lineHeight": 20,
+            "textAlign": "center",
+          },
+          Object {
+            "color": "#FFCC00",
+          },
+        ]
+      }
+    >
+      What‘s flying above you?
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      disabled={false}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "backgroundColor": "transparent",
+          "color": "white",
+          "fontSize": 18,
+          "fontWeight": "bold",
+          "lineHeight": 20,
+          "textAlign": "center",
+        }
+      }
+    >
+      Check your Radar to
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      disabled={false}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "backgroundColor": "transparent",
+          "color": "white",
+          "fontSize": 18,
+          "fontWeight": "bold",
+          "lineHeight": 20,
+          "textAlign": "center",
+        }
+      }
+    >
+      see real airplanes nearby
+    </Text>
+    <View
+      accessibilityComponentType={undefined}
+      accessibilityLabel={undefined}
+      accessibilityTraits={undefined}
+      accessible={true}
+      collapsable={undefined}
+      hitSlop={undefined}
+      isTVSelectable={true}
+      nativeID={undefined}
+      onLayout={undefined}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "backgroundColor": "#FFCC00",
+          "borderRadius": 20,
+          "marginTop": 20,
+          "opacity": 1,
+          "paddingVertical": 10,
+          "width": 200,
+        }
+      }
+      testID={undefined}
+      tvParallaxProperties={undefined}
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+              "color": "white",
+              "fontSize": 18,
+              "fontWeight": "bold",
+              "lineHeight": 20,
+              "textAlign": "center",
+            },
+            Object {
+              "color": "black",
+              "textAlign": "center",
+            },
+          ]
+        }
+      >
+        Okay...
+      </Text>
+    </View>
+  </View>
+</View>
+`;
