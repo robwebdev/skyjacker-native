@@ -15,7 +15,9 @@ import Colors from "../constants/Colors";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import React from "react";
 import TextStyles from "../styles/Text";
+import { connect } from "react-redux";
 import dismissKeyboard from "dismissKeyboard";
+import { updatePlayerName } from "../actions";
 
 const buttonIcon = (
   <Icon
@@ -41,6 +43,16 @@ const renderInput = ({ input: { onChange, ...restInput } }) => {
 };
 
 class SignUpForm extends React.Component {
+  componentWillUpdate(nextProps) {
+    if (nextProps.playerName) {
+      this.props.navigation.dispatch({
+        key: "Intro1",
+        type: "ReplaceCurrentScreen",
+        routeName: "Intro1"
+      });
+    }
+  }
+
   render() {
     const { handleSubmit } = this.props;
 
@@ -62,7 +74,7 @@ class SignUpForm extends React.Component {
           </View>
           <TouchableOpacity
             style={styles.button}
-            onPress={handleSubmit(this._submit.bind(this))}
+            onPress={handleSubmit(this.props.updatePlayerName)}
           >
             {buttonIcon}
           </TouchableOpacity>
@@ -70,21 +82,25 @@ class SignUpForm extends React.Component {
       </Animatable.View>
     );
   }
-
-  _submit(values) {
-    console.log("submitting form", values);
-    dismissKeyboard();
-    this.props.navigation.dispatch({
-      key: "Intro1",
-      type: "ReplaceCurrentScreen",
-      routeName: "Intro1"
-    });
-  }
 }
 
-export default reduxForm({
+const Form = reduxForm({
   form: "signup"
 })(SignUpForm);
+
+function mapStateToProps({ player }) {
+  return {
+    playerName: player.name
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    updatePlayerName: name => dispatch(updatePlayerName(name))
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Form);
 
 const styles = StyleSheet.create({
   container: {

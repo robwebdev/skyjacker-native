@@ -3,7 +3,7 @@ import { AUTHENTICATE, LOAD_PLAYER } from "../actions";
 export default (state = null, action) => {
   switch (action.type) {
     case fulfilled(LOAD_PLAYER):
-      return { ...state, ...action.payload };
+      return { ...state, name: action.payload.displayName };
     default:
       return state;
   }

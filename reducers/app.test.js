@@ -33,7 +33,7 @@ describe("app reducer", () => {
         }
       )
     ).toEqual({
-      player: { displayName: "" },
+      player: { name: "" },
       isAuthenticated: true,
       form: {}
     });

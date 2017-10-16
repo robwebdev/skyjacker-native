@@ -1,6 +1,6 @@
 import { GAMESPARKS_KEY, GAMESPARKS_SECRET } from "react-native-dotenv";
 
-import DeviceInfo from "../stubs/DeviceInfo";
+import DeviceInfo from "../utils/DeviceInfo";
 import { Platform } from "react-native";
 import createGameSparksClient from "../clients/gamesparks";
 
@@ -8,6 +8,7 @@ const gs = createGameSparksClient();
 
 export const AUTHENTICATE = "AUTHENTICATE";
 export const LOAD_PLAYER = "LOAD_PLAYER";
+export const UPDATE_PLAYER_NAME = "UPDATE_PLAYER_NAME";
 
 export function initPreview() {
   return dispatch => {
@@ -41,5 +42,16 @@ export function loadPlayer() {
   return {
     type: LOAD_PLAYER,
     payload: gs.accountDetailsRequestAsync()
+  };
+}
+
+export function updatePlayerName(displayName) {
+  return dispatch => {
+    return dispatch({
+      type: UPDATE_PLAYER_NAME,
+      payload: gs.changeUserDetailsRequestAsync(displayName)
+    }).then(() => {
+      return dispatch(loadPlayer());
+    });
   };
 }

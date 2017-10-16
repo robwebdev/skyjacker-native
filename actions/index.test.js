@@ -11,13 +11,14 @@ jest.mock("../clients/gamesparks", () => {
       initPreview: options => {
         options.onInit();
       },
-      deviceAuthenticationRequestAsync: Promise.resolve
+      deviceAuthenticationRequestAsync: jest.fn(() => Promise.resolve({})),
+      changeUserDetailsRequestAsync: jest.fn(() => Promise.resolve({}))
     };
   };
 });
 
-// Based on http://redux.js.org/docs/recipes/WritingTests.html#async-action-creators
 describe("actions", () => {
+  // Based on http://redux.js.org/docs/recipes/WritingTests.html#async-action-creators
   it("should create and dispatch AUTHENTICATE when initPreview succeeds", () => {
     const expectedActions = [
       { payload: expect.any(Promise), type: actions.AUTHENTICATE }
@@ -25,6 +26,18 @@ describe("actions", () => {
     const mockStore = configureMockStore([thunk]);
     const store = mockStore({});
     return store.dispatch(actions.initPreview()).then(() => {
+      expect(store.getActions()).toEqual(expectedActions);
+    });
+  });
+
+  it("should create UPDATE_PLAYER_NAME with a promise payload", () => {
+    const expectedActions = [
+      { payload: expect.any(Promise), type: actions.UPDATE_PLAYER_NAME },
+      { payload: expect.any(Promise), type: actions.LOAD_PLAYER }
+    ];
+    const mockStore = configureMockStore([thunk, promiseMiddleware()]);
+    const store = mockStore({});
+    store.dispatch(actions.updatePlayerName()).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
     });
   });
