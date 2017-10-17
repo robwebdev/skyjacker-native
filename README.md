@@ -19,3 +19,16 @@ TODO:
 - [ ] Add motivation for adding React Navigation.
 - [ ] Mention steps for adding a `ReplaceCurrentScreen` navigation action.
 - [ ] Investigate and document custom styled tab navigation bars.
+- [ ] Explore moving navigation state to redux store.
+
+## Redux Form
+TODO:
+- [ ] Add motivation for adding Redux Form.
+- [ ] Explore sync and async validations, loading and error states.
+- [ ] Note about decoupling connected and presentational components with react form. [link](https://github.com/erikras/redux-form/issues/1444)
+
+## Styling
+TODO:
+- [ ] Mention layout with flexbox, including quirk.
+- [ ] Document solution for full screen background image.
+- [ ] Describe reusing styles across components.
