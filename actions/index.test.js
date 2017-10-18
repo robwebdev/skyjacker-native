@@ -25,7 +25,7 @@ describe("actions", () => {
     ];
     const mockStore = configureMockStore([thunk]);
     const store = mockStore({});
-    return store.dispatch(actions.initPreview()).then(() => {
+    return store.dispatch(actions.actionCreators.initPreview()).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
     });
   });
@@ -37,7 +37,7 @@ describe("actions", () => {
     ];
     const mockStore = configureMockStore([thunk, promiseMiddleware()]);
     const store = mockStore({});
-    store.dispatch(actions.updatePlayerName()).then(() => {
+    store.dispatch(actions.actionCreators.updatePlayerName()).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
     });
   });

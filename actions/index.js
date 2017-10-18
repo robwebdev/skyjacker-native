@@ -3,6 +3,7 @@ import { GAMESPARKS_KEY, GAMESPARKS_SECRET } from "react-native-dotenv";
 import DeviceInfo from "../utils/DeviceInfo";
 import { Platform } from "react-native";
 import createGameSparksClient from "../clients/gamesparks";
+import preloadImageRequest from "../utils/preloadImages";
 
 const gs = createGameSparksClient();
 
@@ -10,7 +11,7 @@ export const AUTHENTICATE = "AUTHENTICATE";
 export const LOAD_PLAYER = "LOAD_PLAYER";
 export const UPDATE_PLAYER_NAME = "UPDATE_PLAYER_NAME";
 
-export function initPreview() {
+function initPreview() {
   return dispatch => {
     return new Promise(resolve => {
       gs.initPreview({
@@ -24,7 +25,7 @@ export function initPreview() {
   };
 }
 
-export function authenticate() {
+function authenticate() {
   return {
     type: AUTHENTICATE,
     payload: gs.deviceAuthenticationRequestAsync(
@@ -38,14 +39,14 @@ export function authenticate() {
   };
 }
 
-export function loadPlayer() {
+function loadPlayer() {
   return {
     type: LOAD_PLAYER,
     payload: gs.accountDetailsRequestAsync()
   };
 }
 
-export function updatePlayerName(displayName) {
+function updatePlayerName(displayName) {
   return dispatch => {
     return dispatch({
       type: UPDATE_PLAYER_NAME,
@@ -55,3 +56,18 @@ export function updatePlayerName(displayName) {
     });
   };
 }
+
+function preloadImages() {
+  return {
+    type: "PRELOAD_IMAGES",
+    payload: preloadImageRequest()
+  };
+}
+
+export const actionCreators = {
+  initPreview,
+  authenticate,
+  loadPlayer,
+  updatePlayerName,
+  preloadImages
+};

@@ -5,25 +5,26 @@ import {
   StyleSheet,
   View
 } from "react-native";
-import { initPreview, loadPlayer } from "./actions";
 
 import AppNavigator from "./AppNavigator";
 import Colors from "./constants/Colors";
 import { Provider } from "react-redux";
 import React from "react";
 import { ScreenOrientation } from "expo";
+import { actionCreators } from "./actions";
 import { connect } from "react-redux";
-import preloadImages from "./utils/preloadImages";
 import store from "./store";
 
-class App extends React.Component {
+const { initPreview, loadPlayer, preloadImages } = actionCreators;
+
+export class App extends React.Component {
   constructor(props) {
     super(props);
     ScreenOrientation.allow(ScreenOrientation.Orientation.PORTRAIT);
   }
 
   async componentDidMount() {
-    await preloadImages();
+    await this.props.preloadImages();
     this.props.init();
   }
 
@@ -60,14 +61,11 @@ function mapStateToProps({ player, isAuthenticated }) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    init: () => dispatch(initPreview()),
-    loadPlayer: () => dispatch(loadPlayer())
-  };
-}
-
-const ConnectedApp = connect(mapStateToProps, mapDispatchToProps)(App);
+export const ConnectedApp = connect(mapStateToProps, {
+  init: initPreview,
+  loadPlayer,
+  preloadImages
+})(App);
 
 export default () => {
   return (
